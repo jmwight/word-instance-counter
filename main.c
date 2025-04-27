@@ -20,7 +20,6 @@ struct wnode
 
 int main(void)
 {
-	/* TODO: basic layout for function */
 	struct attr wattr;
 	char w[MAXWLEN + 1]; /* + 1 for the trailing \0 character at the end of
 				strings */
