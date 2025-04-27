@@ -59,12 +59,12 @@ int main(void)
 
 	/* print the results */
 	/* pointer way of doing it */
-	struct wnode *wnodeend, *wnodeptr;
+	struct wnode **wnodeend, **wnodeptr;
 	wnodeptr = wnodearr;
 	wnodeend = wnodearr + uniquewcnt; /* one past the end */
 
 	for( ; wnodeptr < wnodeend; wnodeptr++)
-		printf("%d,\t%s\n", wnodeptr->count, wnodeptr->word);
+		printf("%d,\t%s\n", (*wnodeptr)->count, (*wnodeptr)->word);
 
 	/* array index way of doing it */
 	/*int i;
