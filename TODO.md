@@ -1,7 +1,7 @@
 # TODO 6-3
 
 1. Finish main function ✓
-2. Finish supporting functions
+2. Finish supporting functions ✓
 3. Create Makefile
 4. Add statistics for total words and total unique words
 5. Test and make sure it works

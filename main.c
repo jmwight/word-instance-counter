@@ -40,7 +40,7 @@ int main(void)
 		if(nw)
 		{
 			uniquewcnt++;
-			nw = 0;
+			nw = FALSE;
 		}
 	}
 
@@ -71,7 +71,25 @@ int main(void)
  * count */
 struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 {
-	/* TODO finish */
+	if(wn == NULL)
+	{
+		/* method 1 */
+		wn = (struct wnode *) malloc(sizeof(struct wnode));
+		wn->word = w;
+		wn->count = 1;
+		wn->left = wn->right = NULL;
+		*nw = TRUE;
+	}
+	/* input word is less than current node word */
+	if(strcmp(w, wn->word) < 0)
+		wn->left = addword(wn->left, w, nw);
+	else if(strcmp(w, wn->word > 0))
+		wn->right = addword(wn->right, w, nw);
+	/* word is equal add to count */
+	else
+		wn->count++;
+
+	return wn;
 }
 
 /* fillwnodelist: fill array of pointers to wnode */
