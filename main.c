@@ -52,6 +52,11 @@ int main(void)
 	qsort_r(wnodearr, sizeof wnodearr / sizeof *wnodearr, sizeof *wnodearr,
 			wcntcmp);
 
+	/* print out some statistics */
+	printf("\n\nRESULTS:\n");
+	printf("Unique Word Count:\t%10d\n", uniquewcnt);
+	printf("Total Word Count:\t%10d\n\n", totalwcnt);
+
 	/* print the results */
 	/* pointer way of doing it */
 	struct wnode *wnodeend, *wnodeptr;
