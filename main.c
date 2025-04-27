@@ -48,7 +48,7 @@ int main(void)
 	struct wnode *wnodearr[uniquewcnt];
 	fillwnodelist(root, wnodearr, uniquewcnt);
 
-	qsort_r(wnodearr, sizeof wnodearr / sizeof *wnodearr, sizeof *wnodearr,
+	qsort(wnodearr, sizeof wnodearr / sizeof *wnodearr, sizeof *wnodearr,
 			wcntcmp);
 
 	/* print out some statistics */
@@ -120,6 +120,6 @@ int wcntcmp(void *w0, void *w1)
 	struct wnode *wn0, *wn1;
        	wn0 = (struct wnode *) w0;
 	wn1 = (struct wnode *) w1;
-	return wn0->count - wn1->count; /* TODO: MAKE SURE THE ORDER IS 
+	return wn1->count - wn0->count; /* TODO: MAKE SURE THE ORDER IS 
 					   CORRECT */
 }
