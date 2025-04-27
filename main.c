@@ -6,10 +6,6 @@
 #define TRUE	1u /* unsigned */
 #define FALSE	0u
 
-struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
-void fillwnodelist(struct wnode *wn, struct **wnodelist, int wnodelistlen)
-int wcntcmp(void *w0, void *w1)
-
 struct wnode
 {
 	char *word;
@@ -17,6 +13,10 @@ struct wnode
 	struct wnode *left;
 	struct wnode *right;
 };
+
+struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw);
+void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, int wnodelistlen);
+int wcntcmp(void *w0, void *w1);
 
 int main(void)
 {
@@ -97,7 +97,7 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 }
 
 /* fillwnodelist: fill array of pointers to wnode */
-void fillwnodelist(struct wnode *wn, struct **wnodelist, int wnodelistlen)
+void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, int wnodelistlen)
 {
 	if(wn != NULL)
 	{
