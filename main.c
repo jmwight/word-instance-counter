@@ -95,7 +95,18 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 /* fillwnodelist: fill array of pointers to wnode */
 void fillwnodelist(struct wnode *wn, struct **wnodelist, int wnodelistlen)
 {
-	/* TODO: finish */
+	if(wn != NULL)
+	{
+		fillwnodelist(wn->left, wnodelist, wnodelistlen);
+		if(wnodelistlen-- > 0)
+			*wnodelist++ = wn; /* TODO: MAKE SURE THIS IS CORRECT*/
+		else
+		{
+			printf("Error: ran out of wordlist");
+			return;
+		}
+		fillwnodelist(wn->right, wnodelist, wnodelistlen);
+	}
 }
 
 /* wcntcmp: compare two counts inside two wnodes. Function to be used in input
