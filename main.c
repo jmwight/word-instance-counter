@@ -113,5 +113,9 @@ void fillwnodelist(struct wnode *wn, struct **wnodelist, int wnodelistlen)
  * to qsort for comparison function */
 int wcntcmp(void *w0, void *w1)
 {
-	/* TODO: finish */
+	struct wnode *wn0, *wn1;
+       	wn0 = (struct wnode *) w0;
+	wn1 = (struct wnode *) w1;
+	return wn0->count - wn1->count; /* TODO: MAKE SURE THE ORDER IS 
+					   CORRECT */
 }
