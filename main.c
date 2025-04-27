@@ -6,7 +6,7 @@
 #define TRUE	1u /* unsigned */
 #define FALSE	0u
 
-struct wnode *addword(struct wnode *wn, char *w)
+struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 void fillwnodelist(struct **wnodelist, int wnodelistlen)
 int wcntcmp(void *w0, void *w1)
 
@@ -67,9 +67,9 @@ int main(void)
 		printf("%d,\t%s\n", wnodearr->count, wnodearr->word);*/
 }
 
-/* addword: add word to binary tree if not already present and update word 
+/* addword: add word to binary tree if not already present and update word
  * count */
-struct wnode *addword(struct wnode *wn, char *w)
+struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 {
 	/* TODO finish */
 }
