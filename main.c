@@ -7,7 +7,7 @@
 #define FALSE	0u
 
 struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
-void fillwnodelist(struct **wnodelist, int wnodelistlen)
+void fillwnodelist(struct wnode *wn, struct **wnodelist, int wnodelistlen)
 int wcntcmp(void *w0, void *w1)
 
 struct wnode
@@ -93,7 +93,7 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 }
 
 /* fillwnodelist: fill array of pointers to wnode */
-void fillwnodelist(struct **wnodelist, int wnodelistlen)
+void fillwnodelist(struct wnode *wn, struct **wnodelist, int wnodelistlen)
 {
 	/* TODO: finish */
 }
