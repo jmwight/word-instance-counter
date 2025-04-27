@@ -3,6 +3,7 @@
 1. Finish main function ✓
 2. Finish supporting functions
 3. Create Makefile
-4. Test and make sure it works
-5. Create README file
-6. Add LICENSE file
+4. Add statistics for total words and total unique words
+5. Test and make sure it works
+6. Create README file
+7. Add LICENSE file
