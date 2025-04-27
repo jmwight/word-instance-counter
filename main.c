@@ -17,7 +17,7 @@ struct wnode
 
 struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw);
 void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen);
-int wcntcmp(void *w0, void *w1);
+int wcntcmp(const void *w0, const void *w1);
 
 int main(void)
 {
@@ -116,7 +116,7 @@ void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnod
 
 /* wcntcmp: compare two counts inside two wnodes. Function to be used in input
  * to qsort for comparison function */
-int wcntcmp(void *w0, void *w1)
+int wcntcmp(const void *w0, const void *w1)
 {
 	struct wnode *wn0, *wn1;
        	wn0 = (struct wnode *) w0;
