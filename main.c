@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "getword.h"
 
 #define MXWLEN	50 /* 99.999% of all words are <= 50 characters */
@@ -32,6 +33,10 @@ int main(void)
 	 * total words */
 	while((wattr = getword(w, MXWLEN + 1)).c != EOF)
 	{
+		int i;
+		for(i = 0; w[i] != '\0'; i++)
+			w[i] = tolower(w[i]);
+		printf("\n%s", w);
 		root = addword(root, w, &nw);
 		totalwcnt++;
 		/* add total count of unique words if we added new one to tree.
@@ -86,7 +91,7 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 		*nw = TRUE;
 	}
 	/* input word is less than current node word */
-	if(strcmp(w, wn->word) < 0)
+	else if(strcmp(w, wn->word) < 0)
 		wn->left = addword(wn->left, w, nw);
 	else if(strcmp(w, wn->word) > 0)
 		wn->right = addword(wn->right, w, nw);
