@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct wnode *addword(struct wnode *wn, char *w)
+void fillwnodelist(struct **wnodelist, int wnodelistlen)
+int wcntcmp(void *w0, void *w1)
+
 struct wnode
 {
 	char *word;
@@ -10,6 +14,26 @@ struct wnode
 };
 
 int main(void)
+{
+
+}
+
+/* addword: add word to binary tree if not already present and update word 
+ * count */
+struct wnode *addword(struct wnode *wn, char *w)
+{
+
+}
+
+/* fillwnodelist: fill array of pointers to wnode */
+void fillwnodelist(struct **wnodelist, int wnodelistlen)
+{
+
+}
+
+/* wcntcmp: compare two counts inside two wnodes. Function to be used in input
+ * to qsort for comparison function */
+int wcntcmp(void *w0, void *w1)
 {
 
 }
