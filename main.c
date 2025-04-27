@@ -15,21 +15,21 @@ struct wnode
 };
 
 struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw);
-void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, int wnodelistlen);
+void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen);
 int wcntcmp(void *w0, void *w1);
 
 int main(void)
 {
 	struct attr wattr;
-	char w[MAXWLEN + 1]; /* + 1 for the trailing \0 character at the end of
+	char w[MXWLEN + 1]; /* + 1 for the trailing \0 character at the end of
 				strings */
 	struct wnode *root = NULL;
 	unsigned int nw, uniquewcnt, totalwcnt;
-	nw = uniquewcnt = totalwcnt = 0;
+	nw = uniquewcnt = totalwcnt = 0u;
 
 	/* get all words, put into tree, and get counts of unique words and
 	 * total words */
-	while((wattr = getword(w, MXWLEN + 1)) != EOF)
+	while((wattr = getword(w, MXWLEN + 1)).c != EOF)
 	{
 		root = addword(root, w, &nw);
 		totalwcnt++;
@@ -46,7 +46,7 @@ int main(void)
 	/* create a flat array that qsort can work with (it can't work with a
 	 * binary tree */
 	struct wnode *wnodearr[uniquewcnt];
-	fillwnodelist(wnodearr, uniquewcnt);
+	fillwnodelist(root, wnodearr, uniquewcnt);
 
 	qsort_r(wnodearr, sizeof wnodearr / sizeof *wnodearr, sizeof *wnodearr,
 			wcntcmp);
@@ -97,7 +97,7 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 }
 
 /* fillwnodelist: fill array of pointers to wnode */
-void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, int wnodelistlen)
+void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen)
 {
 	if(wn != NULL)
 	{
