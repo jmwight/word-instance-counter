@@ -70,6 +70,8 @@ int main(void)
 	for( ; wnodeptr < wnodeend; wnodeptr++)
 		printf("%d,\t%s\n", (*wnodeptr)->count, (*wnodeptr)->word);
 
+	return 0;
+
 	/* array index way of doing it */
 	/*int i;
 	for(i = 0; i < uniquewcnt; i++)
