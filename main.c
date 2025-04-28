@@ -16,8 +16,14 @@ struct wnode
 	struct wnode *right;
 };
 
+struct wnodeliststruct
+{
+	struct wnode **wnodelist;
+	int rem;
+};
+
 struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw);
-void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen);
+struct wnodeliststruct fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen);
 int wcntcmp(const void *w0, const void *w1);
 
 int main(void)
@@ -102,19 +108,29 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 }
 
 /* fillwnodelist: fill array of pointers to wnode */
-void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen)
+struct wnodeliststruct fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen)
 {
 	if(wn != NULL)
 	{
-		fillwnodelist(wn->left, wnodelist, wnodelistlen);
+		struct wnodeliststruct wnl = fillwnodelist(wn->left, wnodelist, wnodelistlen);
+		wnodelist = wnl.wnodelist;
+		wnodelistlen = wnl.rem;
 		if(wnodelistlen-- > 0)
-			*wnodelist++ = wn; /* TODO: MAKE SURE THIS IS CORRECT*/
+		{
+			*wnodelist = wn; /* TODO: MAKE SURE THIS IS CORRECT*/
+			struct wnodeliststruct wnls;
+			wnls.wnodelist = ++wnodelist;
+			wnls.rem = wnodelistlen;
+			return wnls;
+		}
 		else
 		{
 			printf("Error: ran out of wordlist");
 			return;
 		}
-		fillwnodelist(wn->right, wnodelist, wnodelistlen);
+		wnl = fillwnodelist(wn->right, wnodelist, wnodelistlen);
+		wnodelist = wnl.wnodelist;
+		wnodelistlen = wnl.rem;		
 	}
 }
 
