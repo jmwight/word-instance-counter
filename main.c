@@ -127,8 +127,8 @@ void *fillwnodelist(struct wnode *wn, struct wnode **wnodelist,
 int wcntcmp(const void *w0, const void *w1)
 {
 	struct wnode *wn0, *wn1;
-       	wn0 = (struct wnode *) w0;
-	wn1 = (struct wnode *) w1;
+	wn0 = *((struct wnode **) w0);
+	wn1 = *((struct wnode **) w1);
 	return wn1->count - wn0->count; /* TODO: MAKE SURE THE ORDER IS 
 					   CORRECT */
 }
