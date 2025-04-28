@@ -17,8 +17,14 @@ struct attr getword(char *word, int lim)
 	wattr.func = 0;
 
 	while(isspace(c = getch()))
+		/* need to return \n because we might be counting lines */
 		if(c == '\n')
+		{
 			onelncom = 0;
+			*w = '\0';
+			wattr.c = c;
+			return wattr;
+		}
 
 	for(firstch = 1; --lim > 0; c = getch())
 	{
