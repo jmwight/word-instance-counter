@@ -1,4 +1,4 @@
-# TODO 6-3
+# TODO 6-4
 
 1. Finish main function ✓
 2. Finish supporting functions ✓
@@ -6,4 +6,4 @@
 4. Create Makefile ✓
 5. Test and make sure it works ✓
 6. Create README file ✓
-7. Add LICENSE file
+7. Add LICENSE file ✓
