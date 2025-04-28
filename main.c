@@ -17,7 +17,7 @@ struct wnode
 };
 
 struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw);
-void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen);
+void *fillwnodelist(struct wnode *wn, struct wnode **wnodelist, struct wnode **wnodelistlen);
 int wcntcmp(const void *w0, const void *w1);
 
 int main(void)
@@ -51,7 +51,7 @@ int main(void)
 	/* create a flat array that qsort can work with (it can't work with a
 	 * binary tree */
 	struct wnode *wnodearr[uniquewcnt];
-	fillwnodelist(root, wnodearr, uniquewcnt);
+	fillwnodelist(root, wnodearr, wnodearr+uniquewcnt);
 
 	qsort(wnodearr, sizeof wnodearr / sizeof *wnodearr, sizeof *wnodearr,
 			wcntcmp);
@@ -102,20 +102,22 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 }
 
 /* fillwnodelist: fill array of pointers to wnode */
-void fillwnodelist(struct wnode *wn, struct wnode **wnodelist, unsigned int wnodelistlen)
+void *fillwnodelist(struct wnode *wn, struct wnode **wnodelist,
+		struct wnode **wnodelistend)
 {
 	if(wn != NULL)
 	{
-		fillwnodelist(wn->left, wnodelist, wnodelistlen);
-		if(wnodelistlen-- > 0)
+		wnodelist = fillwnodelist(wn->left, wnodelist, wnodelistend);
+		if(wnodelist < wnodelistend)
 			*wnodelist++ = wn; /* TODO: MAKE SURE THIS IS CORRECT*/
 		else
 		{
 			printf("Error: ran out of wordlist");
-			return;
+			return NULL;
 		}
-		fillwnodelist(wn->right, wnodelist, wnodelistlen);
+		wnodelist = fillwnodelist(wn->right, wnodelist, wnodelistend);
 	}
+	return wnodelist;
 }
 
 /* wcntcmp: compare two counts inside two wnodes. Function to be used in input
