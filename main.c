@@ -36,7 +36,6 @@ int main(void)
 		int i;
 		for(i = 0; w[i] != '\0'; i++)
 			w[i] = tolower(w[i]);
-		printf("\n%s", w);
 		root = addword(root, w, &nw);
 		totalwcnt++;
 		/* add total count of unique words if we added new one to tree.
@@ -85,7 +84,7 @@ struct wnode *addword(struct wnode *wn, char *w, unsigned int *nw)
 	{
 		/* method 1 */
 		wn = (struct wnode *) malloc(sizeof(struct wnode));
-		wn->word = w;
+		wn->word = strdup(w);
 		wn->count = 1;
 		wn->left = wn->right = NULL;
 		*nw = TRUE;
